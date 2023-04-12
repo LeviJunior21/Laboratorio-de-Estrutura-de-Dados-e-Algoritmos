@@ -1,9 +1,9 @@
 package sorting.variationsOfBubblesort;
 
 import sorting.AbstractSorting;
+import util.Util;
 
-public class RecursiveBubbleSort<T extends Comparable<T>> extends
-		AbstractSorting<T> {
+public class RecursiveBubbleSort<T extends Comparable<T>> extends AbstractSorting<T> {
 
 	/**
 	 * Implementação recursiva do bubble sort. Você deve implementar apenas esse
@@ -15,8 +15,19 @@ public class RecursiveBubbleSort<T extends Comparable<T>> extends
 	 */
 	@Override
 	public void sort(T[] array, int leftIndex, int rightIndex) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not Implemented yet!");
+		if (leftIndex < rightIndex) {
+			sort(array, leftIndex + 1, rightIndex);
+			sort2(array, leftIndex, rightIndex);
+		}
+	}
+
+	private void sort2(T[]array, int leftIndex, int rightIndex) {
+		if (leftIndex < rightIndex) {
+			if (array[leftIndex].compareTo(array[leftIndex + 1]) == 1) {
+				Util.swap(array, leftIndex, leftIndex + 1);
+			}
+			sort2(array, leftIndex + 1, rightIndex);
+		}
 	}
 
 }
