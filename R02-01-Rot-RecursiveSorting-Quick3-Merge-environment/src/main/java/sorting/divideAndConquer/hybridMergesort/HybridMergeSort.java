@@ -1,6 +1,7 @@
 package sorting.divideAndConquer.hybridMergesort;
 
 import sorting.AbstractSorting;
+import util.Util;
 
 /**
  * A classe HybridMergeSort representa a implementação de uma variação do
@@ -30,7 +31,67 @@ public class HybridMergeSort<T extends Comparable<T>> extends
 	protected static int INSERTIONSORT_APPLICATIONS = 0;
 
 	public void sort(T[] array, int leftIndex, int rightIndex) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if (array.length <= SIZE_LIMIT) {
+			insertionSort(array, leftIndex, rightIndex);
+		}
+		else {
+			mergeSort(array, leftIndex, rightIndex);
+		}
+	}
+	
+	public void insertionSort(T[] array, int leftIndex, int rightIndex) {
+		for (int index = leftIndex + 1; index < rightIndex; index++) {
+			int aux = index;
+			while (aux > leftIndex && array[aux].compareTo(array[aux - 1]) == -1) {
+				Util.swap(array, index, aux);
+				aux--;
+			}
+		}
+	}
+	
+	public void mergeSort(T[] array, int leftIndex, int rightIndex) {
+		if (leftIndex < rightIndex) {
+		int center = (leftIndex + rightIndex) / 2;
+			mergeSort(array, leftIndex, center);
+			mergeSort(array, center + 1, rightIndex);
+			merge(array, leftIndex, center, rightIndex);
+		}
+	}
+	
+	public void merge(T[] array, int leftIndex, int center, int rightIndex) {
+		T[] helper = helperAux(array);
+		int index = leftIndex;
+		int left = leftIndex;
+		int right = center + 1;
+		
+		while (left <= center && right <= rightIndex) {
+			if (helper[left].compareTo(helper[right]) == -1) {
+				array[index] = helper[left];
+				left++;
+			}
+			else {
+				array[index] = helper[right];
+				right++;
+			}
+			index++;
+		}
+		while (left <= center) {
+			array[index] = helper[left];
+			index++;
+			left++;
+		}
+		while (right <= rightIndex) {
+			array[index] = helper[right];
+			index++;
+			right++;
+		}
+	}
+	
+	public T[] helperAux(T[] array) {
+		T[] helper = (T[]) new Comparable[array.length];
+		for (int i = 0; i < array.length; i++) {
+			helper[i] = array[i];
+		}
+		return helper;
 	}
 }
