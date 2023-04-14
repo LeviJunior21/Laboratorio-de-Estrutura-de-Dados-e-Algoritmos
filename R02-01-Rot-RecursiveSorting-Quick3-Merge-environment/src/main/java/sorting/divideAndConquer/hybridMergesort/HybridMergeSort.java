@@ -31,11 +31,19 @@ public class HybridMergeSort<T extends Comparable<T>> extends
 	protected static int INSERTIONSORT_APPLICATIONS = 0;
 
 	public void sort(T[] array, int leftIndex, int rightIndex) {
-		mergeSort(array, leftIndex, rightIndex);
+		MERGESORT_APPLICATIONS = 0;
+		INSERTIONSORT_APPLICATIONS = 0;
+		if (SIZE_LIMIT >= 0 && leftIndex >= 0 && rightIndex >= 0) { 
+			if (array.length > SIZE_LIMIT) {
+				mergeSort(array, leftIndex, rightIndex);
+			}
+			else {
+				insertionSort(array, leftIndex, rightIndex);
+			} 
+		}
 	}
 	
 	public void insertionSort(T[] array, int leftIndex, int rightIndex) {
-		INSERTIONSORT_APPLICATIONS++;
 		for (int index = leftIndex + 1; index <= rightIndex; index++) {
 			int aux = index;
 			while (aux > leftIndex && array[aux].compareTo(array[aux - 1]) == -1) {
@@ -43,21 +51,17 @@ public class HybridMergeSort<T extends Comparable<T>> extends
 				aux--;
 			}
 		}
+		INSERTIONSORT_APPLICATIONS++;
 	}
 	
 	public void mergeSort(T[] array, int leftIndex, int rightIndex) {
-		MERGESORT_APPLICATIONS++;
 		if (leftIndex < rightIndex) {
-		int center = (leftIndex + rightIndex) / 2;
-			if (center - leftIndex > SIZE_LIMIT) {
-				mergeSort(array, leftIndex, center);
-				
-			}
-			if (rightIndex - center + 1 > SIZE_LIMIT){
-				mergeSort(array, center + 1, rightIndex);
-			}
-			insertionSort(array, leftIndex, rightIndex);
+			int center = (leftIndex + rightIndex) / 2;
+			mergeSort(array, leftIndex, center);	
+			mergeSort(array, center + 1, rightIndex);		
+			merge(array, leftIndex, center, rightIndex);
 		}
+		MERGESORT_APPLICATIONS++;
 	}
 	
 	public void merge(T[] array, int leftIndex, int center, int rightIndex) {
