@@ -1,6 +1,7 @@
 package sorting.divideAndConquer.quicksort3;
 
 import sorting.AbstractSorting;
+import util.Util;
 
 /**
  * A classe QuickSortMedianOfThree representa uma variação do QuickSort que
@@ -20,7 +21,25 @@ public class QuickSortMedianOfThree<T extends Comparable<T>> extends
 		AbstractSorting<T> {
 
 	public void sort(T[] array, int leftIndex, int rightIndex) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if (leftIndex < rightIndex) {
+			int pivot = partition(array, leftIndex, leftIndex, rightIndex);
+			sort(array, leftIndex, pivot - 1);
+			sort(array, pivot + 1, rightIndex);
+		}
+	}
+	
+	public int partition(T[] array, int leftIndex, int meio, int rightIndex) {
+		int predecessor = leftIndex;
+		int pivot = meio;
+		
+		for (int i = leftIndex + 1; i <= rightIndex; i++) {
+			if (array[i].compareTo(array[pivot]) == -1) {
+				predecessor++;
+				Util.swap(array, predecessor, i);
+			}
+		}
+		
+		Util.swap(array, predecessor, pivot);
+		return predecessor;
 	}
 }
