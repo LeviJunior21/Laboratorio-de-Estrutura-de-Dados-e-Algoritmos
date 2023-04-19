@@ -33,44 +33,43 @@ public class HybridMergeSort<T extends Comparable<T>> extends
 	public void sort(T[] array, int leftIndex, int rightIndex) {
 		MERGESORT_APPLICATIONS = 0;
 		INSERTIONSORT_APPLICATIONS = 0;
-		if (SIZE_LIMIT >= 0 && leftIndex >= 0 && rightIndex >= 0) { 
-			if (array.length > SIZE_LIMIT) {
-				mergeSort(array, leftIndex, rightIndex);
-			}
-			else {
-				insertionSort(array, leftIndex, rightIndex);
-			} 
-		}
+		mergeSortHybrid(array, leftIndex, rightIndex);
 	}
 	
-	public void insertionSort(T[] array, int leftIndex, int rightIndex) {
+	private void insertionSort(T[] array, int leftIndex, int rightIndex) {
 		for (int index = leftIndex + 1; index <= rightIndex; index++) {
 			int aux = index;
 			while (aux > leftIndex && array[aux].compareTo(array[aux - 1]) == -1) {
-				Util.swap(array, index, aux);
+				Util.swap(array, aux, aux - 1);
 				aux--;
 			}
 		}
-		INSERTIONSORT_APPLICATIONS++;
+		INSERTIONSORT_APPLICATIONS += 1;
 	}
 	
-	public void mergeSort(T[] array, int leftIndex, int rightIndex) {
-		if (leftIndex < rightIndex) {
-			int center = (leftIndex + rightIndex) / 2;
-			mergeSort(array, leftIndex, center);	
-			mergeSort(array, center + 1, rightIndex);		
-			merge(array, leftIndex, center, rightIndex);
+	private void mergeSortHybrid(T[] array, int leftIndex, int rightIndex) {
+		if (SIZE_LIMIT >= 0 && leftIndex >= 0 && rightIndex >= 0) { 
+			if (leftIndex <= rightIndex) {
+				if ((rightIndex - leftIndex + 1) <= SIZE_LIMIT) {
+					insertionSort(array, leftIndex, rightIndex);
+				}
+				else {
+					int medium = (leftIndex + rightIndex) / 2;
+					mergeSortHybrid(array, leftIndex, medium);	
+					mergeSortHybrid(array, medium + 1, rightIndex);		
+					merge(array, leftIndex, medium, rightIndex);
+				}
+			}
 		}
-		MERGESORT_APPLICATIONS++;
 	}
 	
-	public void merge(T[] array, int leftIndex, int center, int rightIndex) {
+	private void merge(T[] array, int leftIndex, int medium, int rightIndex) {
 		T[] helper = helperAux(array);
 		int index = leftIndex;
 		int left = leftIndex;
-		int right = center + 1;
+		int right = medium + 1;
 		
-		while (left <= center && right <= rightIndex) {
+		while (left <= medium && right <= rightIndex) {
 			if (helper[left].compareTo(helper[right]) == -1) {
 				array[index] = helper[left];
 				left++;
@@ -81,7 +80,7 @@ public class HybridMergeSort<T extends Comparable<T>> extends
 			}
 			index++;
 		}
-		while (left <= center) {
+		while (left <= medium) {
 			array[index] = helper[left];
 			index++;
 			left++;
@@ -91,9 +90,10 @@ public class HybridMergeSort<T extends Comparable<T>> extends
 			index++;
 			right++;
 		}
+		MERGESORT_APPLICATIONS += 1;
 	}
 	
-	public T[] helperAux(T[] array) {
+	private T[] helperAux(T[] array) {
 		T[] helper = (T[]) new Comparable[array.length];
 		for (int i = 0; i < array.length; i++) {
 			helper[i] = array[i];
