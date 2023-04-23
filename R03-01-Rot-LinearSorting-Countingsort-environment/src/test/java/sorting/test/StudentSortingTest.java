@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import sorting.AbstractSorting;
 import sorting.linearSorting.CountingSort;
+import sorting.linearSorting.ExtendedCountingSort;
 
 public class StudentSortingTest {
 
@@ -16,18 +17,17 @@ public class StudentSortingTest {
 	private Integer[] vetorVazio = {};
 	private Integer[] vetorValoresRepetidos;
 	private Integer[] vetorValoresIguais;
+	private Integer[] vetorNegativo;
 
 	public AbstractSorting<Integer> implementation;
 
 	@Before
 	public void setUp() {
-		populaVetorTamanhoPar(new Integer[] { 30, 28, 7, 29, 11, 26, 4, 22, 23,
-				31 });
-		populaVetorTamanhoImpar(new Integer[] { 6, 41, 32, 7, 26, 4, 37, 49,
-				11, 18, 36 });
+		populaVetorTamanhoPar(new Integer[] { 30, 28, 7, 29, 11, 26, 4, 22, 23, 31 });
+		populaVetorTamanhoImpar(new Integer[] { 6, 41, 32, 7, 26, 4, 37, 49, 11, 18, 36 });
 		populaVetorRepetido(new Integer[] { 4, 9, 3, 4, 0, 5, 1, 4 });
 		populaVetorIgual(new Integer[] { 6, 6, 6, 6, 6, 6 });
-
+		populaVetorNegativo(new Integer[] {-1, -2, -3, -4});
 		getImplementation();
 	}
 
@@ -39,7 +39,11 @@ public class StudentSortingTest {
 	private void getImplementation() {
 		// TODO O aluno deve instanciar sua implementação abaixo ao invés de
 		// null
-		this.implementation = new CountingSort();
+		this.implementation = new ExtendedCountingSort();
+	}
+	
+	public void populaVetorNegativo(Integer[] arrayPadrao) {
+		this.vetorNegativo = Arrays.copyOf(arrayPadrao, arrayPadrao.length);
 	}
 
 	public void populaVetorTamanhoPar(Integer[] arrayPadrao) {
@@ -74,6 +78,11 @@ public class StudentSortingTest {
 		Assert.assertArrayEquals(copy1, array);
 	}
 
+	@Test
+	public void testSort() {
+		genericTest(vetorNegativo);
+	}
+	
 	@Test
 	public void testSort01() {
 		genericTest(vetorTamPar);

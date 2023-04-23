@@ -17,40 +17,27 @@ public class CountingSort extends AbstractSorting<Integer> {
 
 	@Override
 	public void sort(Integer[] array, int leftIndex, int rightIndex) {
-		if (leftIndex < rightIndex) {
-			int biggerNumber = maxNumber(array, leftIndex, rightIndex);
-			int minNumber = minBetweenNumbers(array, leftIndex, rightIndex);
-			
-			int[] arrayCount = new int[(biggerNumber - minNumber) + 1];
-			
+		if (leftIndex >= 0 && leftIndex < rightIndex) {
+			Integer biggerNumber = maxBetweenNumbers(array, leftIndex, rightIndex);
+			Integer[] arrayCount = arrayZeros(biggerNumber + 1);
 			for (int i = leftIndex; i <= rightIndex; i++) {
-				arrayCount[array[i] - minNumber] += 1;
+				arrayCount[array[i]] += 1;
 			}
 			
-			int[] arrayCumulative = arrayCount;
+			Integer[] arrayCumulative = arrayCount;
 			for (int j = leftIndex + 1; j <= arrayCumulative.length - 1; j++) {
 				arrayCumulative[j] += arrayCumulative[j - 1];
 			}
 			
-			int[] arrayOrder = new int[array.length];
-			for (int k = array.length - 1; k >= leftIndex; k--) {
-				arrayOrder[arrayCumulative[array[k] - minNumber] - 1] = array[k];
-				arrayCumulative[array[k] - minNumber]--;
+			Integer[] helper = helperCopy(array, leftIndex, rightIndex);
+			for (int k = rightIndex; k >= leftIndex; k--) {
+				array[arrayCumulative[helper[k]] - 1] = helper[k];
+				arrayCumulative[helper[k]]--;
 			}
 		}
-	} 
-	
-	private Integer minBetweenNumbers(Integer[] array, int leftIndex, int rightIndex) {
-		int min = array[leftIndex];
-		for (int i = leftIndex; i <= rightIndex; i++) {
-			if (array[i].compareTo(min) == -1) {
-				min = array[i];
-			}
-		}
-		return min;
 	}
 	
-	private Integer maxNumber(Integer[] array, int leftIndex, int rightIndex) {
+	private Integer maxBetweenNumbers(Integer[] array, int leftIndex, int rightIndex) {
 		int bigger = array[leftIndex];
 		for (int i = leftIndex; i <= rightIndex; i++) {
 			if (array[i].compareTo(bigger) == 1) {
@@ -59,5 +46,20 @@ public class CountingSort extends AbstractSorting<Integer> {
 		}
 		return bigger;
 	}
-
+	
+	private Integer[] arrayZeros(int size) {
+		 Integer[] newArray = new Integer[size];
+		 for (int i = 0; i <= size - 1; i++) {
+			 newArray[i] = 0;
+		 }
+		 return newArray;
+	}
+	
+	private Integer[] helperCopy(Integer[] array, int leftIndex, int rightIndex) {
+		Integer[] copyArray = new Integer[array.length];
+		for (int i = leftIndex; i <= rightIndex; i++) {
+			copyArray[i] = array[i];
+		}
+		return copyArray;
+	}
 }
