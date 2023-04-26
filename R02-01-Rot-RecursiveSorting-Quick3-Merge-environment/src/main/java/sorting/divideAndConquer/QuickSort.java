@@ -15,18 +15,20 @@ public class QuickSort<T extends Comparable<T>> extends AbstractSorting<T> {
 
 	@Override
 	public void sort(T[] array, int leftIndex, int rightIndex) {
-		if (leftIndex < rightIndex) {
-			int indexPivot = particiona(array, leftIndex, rightIndex);
-			sort(array, leftIndex, indexPivot - 1);
-			sort(array, indexPivot + 1, rightIndex);
+		if (leftIndex >= 0 && rightIndex < array.length) {
+			if (leftIndex < rightIndex) {
+				int indexPivot = particiona(array, leftIndex, rightIndex);
+				sort(array, leftIndex, indexPivot - 1);
+				sort(array, indexPivot + 1, rightIndex);
+			}
 		}
 	}
 	
-	public int particiona(T[] array, int leftIndex, int rightIndex) {
+	private int particiona(T[] array, int leftIndex, int rightIndex) {
 		int pivot = leftIndex;
 		int predecessorToExchange = leftIndex;
 		
-		for (int index = leftIndex + 1; index < array.length; index++) {
+		for (int index = leftIndex + 1; index <= rightIndex; index++) {
 			if (array[index].compareTo(array[pivot]) == -1) {
 				predecessorToExchange++;
 				Util.swap(array, index, predecessorToExchange); 

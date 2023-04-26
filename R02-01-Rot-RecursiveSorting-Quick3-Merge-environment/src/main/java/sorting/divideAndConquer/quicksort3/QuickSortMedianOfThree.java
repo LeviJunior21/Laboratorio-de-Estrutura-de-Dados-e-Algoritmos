@@ -19,8 +19,8 @@ import util.Util;
  */
 public class QuickSortMedianOfThree<T extends Comparable<T>> extends
 		AbstractSorting<T> {
-
 	public void sort(T[] array, int leftIndex, int rightIndex) {
+<<<<<<< HEAD
 		if (leftIndex < rightIndex) {
 			int pivot = partition(array, leftIndex, leftIndex, rightIndex);
 			sort(array, leftIndex, pivot - 1);
@@ -40,6 +40,47 @@ public class QuickSortMedianOfThree<T extends Comparable<T>> extends
 		}
 		
 		Util.swap(array, predecessor, pivot);
+=======
+		if (leftIndex >= 0 && rightIndex < array.length){
+			if (leftIndex < rightIndex) {
+				int indexPivot = particiona(array, leftIndex, rightIndex);
+				sort(array, leftIndex, indexPivot - 1);
+				sort(array, indexPivot + 1, rightIndex);
+			}
+		}
+	}
+	
+	private int particiona(T[] array, int leftIndex, int rightIndex) {
+		
+		int meio = (leftIndex + rightIndex) / 2;
+		int predecessor= rightIndex - 1;
+		
+		if (array[leftIndex].compareTo(array[rightIndex]) == 1) {
+			Util.swap(array, leftIndex, rightIndex);
+		}
+		if (array[leftIndex].compareTo(array[meio]) == 1) {
+			Util.swap(array, leftIndex, meio);
+		}
+		if (array[meio].compareTo(array[rightIndex]) == 1) {
+			Util.swap(array, meio, rightIndex);
+		}
+		
+		T pivot = array[meio];
+		Util.swap(array, meio, rightIndex - 1);
+		
+		int index = leftIndex + 1;
+		
+		while (index < predecessor) {
+			if (array[index].compareTo(pivot) >= 0) {
+				predecessor--;
+				Util.swap(array, index, predecessor);
+			} else {
+				index++;
+			}
+		}
+		
+		Util.swap(array, rightIndex - 1, predecessor);
+>>>>>>> fbdd6c3dbeaae286f025b96731378d20a398bdea
 		return predecessor;
 	}
 }
