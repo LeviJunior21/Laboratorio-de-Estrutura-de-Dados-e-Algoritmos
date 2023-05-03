@@ -12,7 +12,7 @@ public class ExtendedCountingSort extends AbstractSorting<Integer> {
 
 	@Override
 	public void sort(Integer[] array, int leftIndex, int rightIndex) {
-		if (leftIndex >= 0 && leftIndex < rightIndex) {
+		if (array != null && leftIndex >= 0 && leftIndex < rightIndex && rightIndex < array.length) {
 			Integer biggerNumber = maxBetweenNumbers(array, leftIndex, rightIndex);
 			Integer minNumber = minBetweenNumbers(array, leftIndex, rightIndex);
 			

@@ -1,36 +1,61 @@
 package problems;
 
+import util.Util;
+
 public class FloorBinarySearchImpl implements Floor {
 
 	@Override
 	public Integer floor(Integer[] array, Integer x) {
-		Integer result = -1;
-		if (array != null && x != null) {
-			Integer value = binarySearch(array, 0, array.length - 1, x);
-			if (value.compareTo(0) == 1) {
-				result = array[value - 1];
-			}
-			else if (value.compareTo(0) == 0){
-				result = array[value];
-			}
+		if (array != null && x != null && array.length != 0) {
+			quickSort(array, 0, array.length - 1);
+			return binarySearch(array, 0, array.length - 1, x , null);
 		}
-		return result;
+		else {
+			return null;
+		}
 	}
 	
-	private Integer binarySearch(Integer[] array, int leftIndex, int rightIndex, Integer x) {
-		Integer result = -1;
-		if (leftIndex <= rightIndex) {
-			Integer medium = (leftIndex + rightIndex) / 2;
-			if (x.compareTo(array[medium]) == 0) {
-				result = medium;
-			}
-			else if (x.compareTo(array[medium]) == 1) {
-				result = binarySearch(array, medium + 1, rightIndex, x);
-			}
-			else {
-				result = binarySearch(array, leftIndex, medium - 1, x);
+	private void quickSort(Integer[] array, int leftIndex, int rightIndex) {
+		if (array.length > 1 && leftIndex < rightIndex) {
+			int pivot = partition(array, leftIndex, rightIndex);
+			quickSort(array, leftIndex, pivot - 1);
+			quickSort(array, pivot + 1, rightIndex);
+		}
+	}
+	
+	private int partition(Integer[] array, int leftIndex, int rightIndex) {
+		int pivot = leftIndex;
+		int predecessor = leftIndex;
+		
+		for (int index = leftIndex + 1; index <= rightIndex; index++) {
+			if (array[index].compareTo(array[pivot]) == -1) {
+				predecessor++;
+				Util.swap(array, index, predecessor);
 			}
 		}
-		return result;
+		
+		Util.swap(array, pivot, predecessor);
+		return predecessor;
+	}
+	
+	private Integer binarySearch(Integer[] array, int leftIndex, int rightIndex, Integer x, Integer floor) {
+		if (leftIndex <= rightIndex) {
+			int mid = (leftIndex + rightIndex) / 2;
+			if (x.compareTo(array[mid]) == 0) {
+				return array[mid];
+			}
+			if (floor == null && array[mid] < x || array[mid] < x && array[mid] > floor) {
+				floor = array[mid];
+			}
+			if (x > array[mid]) {
+				return binarySearch(array, mid + 1, rightIndex, x, floor);
+			}
+			else {
+				return binarySearch(array, leftIndex, mid - 1, x, floor);
+			}
+		}
+		else {
+			return floor;
+		}
 	}
 }

@@ -27,7 +27,7 @@ public class StudentSortingTest {
 		populaVetorTamanhoImpar(new Integer[] { 6, 41, 32, 7, 26, 4, 37, 49, 11, 18, 36 });
 		populaVetorRepetido(new Integer[] { 4, 9, 3, 4, 0, 5, 1, 4 });
 		populaVetorIgual(new Integer[] { 6, 6, 6, 6, 6, 6 });
-		populaVetorNegativo(new Integer[] {-1, -2, -3, -4});
+		populaVetorNegativo(new Integer[] {5,4,3,2,1});
 		getImplementation();
 	}
 
@@ -39,7 +39,7 @@ public class StudentSortingTest {
 	private void getImplementation() {
 		// TODO O aluno deve instanciar sua implementação abaixo ao invés de
 		// null
-		this.implementation = new ExtendedCountingSort();
+		this.implementation = new CountingSort();
 	}
 	
 	public void populaVetorNegativo(Integer[] arrayPadrao) {

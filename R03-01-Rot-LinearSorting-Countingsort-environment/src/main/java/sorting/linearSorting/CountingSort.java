@@ -17,7 +17,7 @@ public class CountingSort extends AbstractSorting<Integer> {
 
 	@Override
 	public void sort(Integer[] array, int leftIndex, int rightIndex) {
-		if (leftIndex >= 0 && leftIndex < rightIndex) {
+		if (array != null && leftIndex >= 0 && leftIndex < rightIndex && rightIndex < array.length) {
 			Integer biggerNumber = maxBetweenNumbers(array, leftIndex, rightIndex);
 			Integer[] arrayCount = arrayZeros(biggerNumber + 1);
 			for (int i = leftIndex; i <= rightIndex; i++) {
@@ -38,7 +38,7 @@ public class CountingSort extends AbstractSorting<Integer> {
 	}
 	
 	private Integer maxBetweenNumbers(Integer[] array, int leftIndex, int rightIndex) {
-		int bigger = array[leftIndex];
+		Integer bigger = array[leftIndex];
 		for (int i = leftIndex; i <= rightIndex; i++) {
 			if (array[i].compareTo(bigger) == 1) {
 				bigger = array[i];
