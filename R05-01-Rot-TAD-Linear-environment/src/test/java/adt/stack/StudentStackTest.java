@@ -44,6 +44,14 @@ public class StudentStackTest {
 	}
 
 	@Test
+	public void testTopEmpty() throws StackUnderflowException {
+		stack1.pop();
+		stack1.pop();
+		stack1.pop();
+		assertEquals(null, stack1.top());
+	}
+	
+	@Test
 	public void testIsEmpty() {
 		assertFalse(stack1.isEmpty());
 	}
