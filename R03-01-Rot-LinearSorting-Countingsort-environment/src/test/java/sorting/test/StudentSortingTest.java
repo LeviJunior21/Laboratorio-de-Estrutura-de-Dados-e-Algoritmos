@@ -8,6 +8,10 @@ import org.junit.Test;
 
 import sorting.AbstractSorting;
 import sorting.linearSorting.CountingSort;
+<<<<<<< HEAD
+=======
+import sorting.linearSorting.ExtendedCountingSort;
+>>>>>>> 9f505c11883f43538ddd10660c9f14757eac74ec
 
 public class StudentSortingTest {
 
@@ -16,11 +20,16 @@ public class StudentSortingTest {
 	private Integer[] vetorVazio = {};
 	private Integer[] vetorValoresRepetidos;
 	private Integer[] vetorValoresIguais;
+<<<<<<< HEAD
+=======
+	private Integer[] vetorNegativo;
+>>>>>>> 9f505c11883f43538ddd10660c9f14757eac74ec
 
 	public AbstractSorting<Integer> implementation;
 
 	@Before
 	public void setUp() {
+<<<<<<< HEAD
 		populaVetorTamanhoPar(new Integer[] { 30, 28, 7, 29, 11, 26, 4, 22, 23,
 				31 });
 		populaVetorTamanhoImpar(new Integer[] { 6, 41, 32, 7, 26, 4, 37, 49,
@@ -28,6 +37,13 @@ public class StudentSortingTest {
 		populaVetorRepetido(new Integer[] { 4, 9, 3, 4, 0, 5, 1, 4 });
 		populaVetorIgual(new Integer[] { 6, 6, 6, 6, 6, 6 });
 
+=======
+		populaVetorTamanhoPar(new Integer[] { 30, 28, 7, 29, 11, 26, 4, 22, 23, 31 });
+		populaVetorTamanhoImpar(new Integer[] { 6, 41, 32, 7, 26, 4, 37, 49, 11, 18, 36 });
+		populaVetorRepetido(new Integer[] { 4, 9, 3, 4, 0, 5, 1, 4 });
+		populaVetorIgual(new Integer[] { 6, 6, 6, 6, 6, 6 });
+		populaVetorNegativo(new Integer[] {5,4,3,2,1});
+>>>>>>> 9f505c11883f43538ddd10660c9f14757eac74ec
 		getImplementation();
 	}
 
@@ -41,6 +57,13 @@ public class StudentSortingTest {
 		// null
 		this.implementation = new CountingSort();
 	}
+<<<<<<< HEAD
+=======
+	
+	public void populaVetorNegativo(Integer[] arrayPadrao) {
+		this.vetorNegativo = Arrays.copyOf(arrayPadrao, arrayPadrao.length);
+	}
+>>>>>>> 9f505c11883f43538ddd10660c9f14757eac74ec
 
 	public void populaVetorTamanhoPar(Integer[] arrayPadrao) {
 		this.vetorTamPar = Arrays.copyOf(arrayPadrao, arrayPadrao.length);
@@ -75,6 +98,14 @@ public class StudentSortingTest {
 	}
 
 	@Test
+<<<<<<< HEAD
+=======
+	public void testSort() {
+		genericTest(vetorNegativo);
+	}
+	
+	@Test
+>>>>>>> 9f505c11883f43538ddd10660c9f14757eac74ec
 	public void testSort01() {
 		genericTest(vetorTamPar);
 	}

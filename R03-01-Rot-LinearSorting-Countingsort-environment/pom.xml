@@ -65,11 +65,19 @@
 						</goals>
 						<configuration>
 							<!-- insira sua matricula -->
+<<<<<<< HEAD
 							<matricula>INSIRA SEU NUMERO DE MATRICULA</matricula>
 							<!-- insira o ID correto da atividade e a turma -->
 							<roteiro>R0X-0X</roteiro>
 							<!-- NÃO MODIFIQUE AS TAGS ABAIXO -->
 							<semestre>2022.1</semestre>
+=======
+							<matricula>121210472</matricula>
+							<!-- insira o ID correto da atividade e a turma -->
+							<roteiro>R03-01</roteiro>
+							<!-- NÃO MODIFIQUE AS TAGS ABAIXO -->
+							<semestre>2022.2</semestre>
+>>>>>>> 9f505c11883f43538ddd10660c9f14757eac74ec
 							<url>http://150.165.15.10:81/submitAtividade</url>
 						</configuration>
 					</execution>

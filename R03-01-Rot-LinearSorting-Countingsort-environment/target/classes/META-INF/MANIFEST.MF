@@ -1,5 +1,10 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: levi.pereira.junior
 Build-Jdk: 17.0.2
+=======
+Built-By: marcos_anderson
+Build-Jdk: 17.0.6
+>>>>>>> 9f505c11883f43538ddd10660c9f14757eac74ec
 Created-By: Maven Integration for Eclipse
 
