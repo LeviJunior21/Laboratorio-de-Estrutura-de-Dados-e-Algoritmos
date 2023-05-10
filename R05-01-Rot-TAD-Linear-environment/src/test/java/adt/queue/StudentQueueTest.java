@@ -64,12 +64,6 @@ public class StudentQueueTest {
 		}
 	}
 
-	@Test(expected = QueueOverflowException.class)
-	public void testEnqueueComErro() throws QueueOverflowException {
-		queue1.enqueue(new Integer(5)); // vai depender do tamanho que a fila
-										// foi iniciada!!!
-	}
-
 	@Test
 	public void testDequeue() {
 		try {

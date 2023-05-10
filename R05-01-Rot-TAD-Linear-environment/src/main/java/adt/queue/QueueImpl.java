@@ -30,7 +30,6 @@ public class QueueImpl<T> implements Queue<T> {
 	}
 
 	private void shiftLeft() {
-		this.tail -= 1;
 		for (int index = 0; index <= tail; index++) {
 			this.array[index] = array[index + 1];
 		}
@@ -50,8 +49,11 @@ public class QueueImpl<T> implements Queue<T> {
 		if (this.isEmpty()) {
 			throw new QueueUnderflowException();
 		}
+		
 		T element = this.array[0];
 		this.shiftLeft();
+		this.tail -= 1;
+
 		return element;
 	}
 
