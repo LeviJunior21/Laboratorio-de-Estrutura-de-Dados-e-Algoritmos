@@ -47,12 +47,12 @@ public class CircularQueue<T> implements Queue<T> {
 
 	@Override
 	public T head() {
-		return (this.array[this.head % this.array.length]);
+		return this.array[this.head % this.array.length];
 	}
 
 	@Override
 	public boolean isEmpty() {
-		return (this.head == -1 && this.tail == -1);
+		return this.head == -1 && this.tail == -1;
 	}
 
 	@Override

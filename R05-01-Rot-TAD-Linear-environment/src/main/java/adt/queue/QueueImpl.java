@@ -26,7 +26,7 @@ public class QueueImpl<T> implements Queue<T> {
 
 	@Override
 	public boolean isFull() {
-		return tail == this.array.length - 1;
+		return this.tail == this.array.length - 1;
 	}
 
 	private void shiftLeft() {

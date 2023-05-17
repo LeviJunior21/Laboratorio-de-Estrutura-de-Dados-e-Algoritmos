@@ -36,6 +36,7 @@ public class QueueCircular2Tests {
 
 	private void getImplementations() {
 		// TODO O aluno deve ajustar aqui para instanciar sua implementação
+		/**
 		queue1 = new QueueUsingStack<>(4);
 		queue2 = new QueueUsingStack<>(2);
 		queue3 = new QueueUsingStack<>(8);
@@ -45,11 +46,13 @@ public class QueueCircular2Tests {
 		queue2 = new QueueUsingStack<>(2);
 		queue3 = new QueueUsingStack<>(8);
 		queue4 = new QueueUsingStack<>(8);
+		**/
 		
-		//queue1 = new CircularQueue<>(4);
-		//queue2 = new CircularQueue<>(2);
-		//queue3 = new CircularQueue<>(8);
-		//queue4 = new CircularQueue<>(8);
+		queue1 = new CircularQueue<>(4);
+		queue2 = new CircularQueue<>(2);
+		queue3 = new CircularQueue<>(8);
+		queue4 = new CircularQueue<>(8);
+		
 	}
 
 	// MÉTODOS DE TESTE
