@@ -27,15 +27,13 @@ public class RecursiveSingleLinkedListImpl<T> implements LinkedList<T> {
 	@Override
 	public T search(T element) {
 		T result = null;
-		
-		if (this.data != null) {
-			if (this.data == element) {
+		if (element != null && !this.isEmpty()) {
+			if (this.data.equals(element)) {
 				result = this.data;
 			} else {
-				result = next.search(element);
+				result = this.next.search(element);
 			}
 		}
-			
 		return result;
 	}
 
@@ -53,15 +51,16 @@ public class RecursiveSingleLinkedListImpl<T> implements LinkedList<T> {
 
 	@Override
 	public void remove(T element) {
-		if (this.data == element) {
-			this.data = this.next.getData();
-			this.next = this.next.getNext();
+		if (element != null && !this.isEmpty()) {
+			if (this.data.equals(element)) {
+				this.data = this.next.getData();
+				this.next = this.next.getNext();
+			}
+			
+			else if (this.data != null) {
+				this.next.remove(element);
+			}
 		}
-		
-		else if (this.data != null) {
-			this.next.remove(element);
-		}
-		
 	}
 
 	@Override

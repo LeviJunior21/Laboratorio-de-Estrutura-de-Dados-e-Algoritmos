@@ -78,11 +78,11 @@ public class RecursiveDoubleLinkedListImpl<T> extends
 			}
 
 			else {
-				data = next.data;
-				next = next.next;
+				data = next.getData();
+				next = next.getNext();
 
 				((RecursiveDoubleLinkedListImpl<T>) next).setPrevious(this);
-			}
+			}  
 		}
 	}
 
