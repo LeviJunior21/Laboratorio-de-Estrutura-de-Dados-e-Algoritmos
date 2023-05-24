@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-05-23T17:17:54.093-0300</date>
+  <logger>LEVI DE LIMA PEREIRA JUNIOR</logger>
+  <level>FINE</level>
+  <message>File 121210472-LEVI DE LIMA PEREIRA JUNIOR.zip was received. It was sent by LEVI DE LIMA PEREIRA JUNIOR from IP 10.0.0.181 at 23-05-2023 17*17*53</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-05-23T17:18:15.916-0300</date>
+  <logger>LEVI DE LIMA PEREIRA JUNIOR</logger>
+  <level>FINE</level>
+  <message>File 121210472-LEVI DE LIMA PEREIRA JUNIOR.zip was received. It was sent by LEVI DE LIMA PEREIRA JUNIOR from IP 10.0.0.181 at 23-05-2023 17*18*15</message>
+</record>
