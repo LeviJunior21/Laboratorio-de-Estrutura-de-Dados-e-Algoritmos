@@ -1,1 +1,1 @@
-# Laboratorio-de-Estrutura-de-Dados-e-Algoritmos
+# Laboratorio de Estrutura de Dados e Algoritmos
